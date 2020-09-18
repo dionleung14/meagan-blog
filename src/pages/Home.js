@@ -8,7 +8,7 @@ export default function Home() {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     API.getBlogs().then((res) => {
-      setBlogs({ ...blogs, res });
+      setBlogs([...res.data]);
     });
   }, []);
 
