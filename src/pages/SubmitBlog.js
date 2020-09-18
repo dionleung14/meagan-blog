@@ -5,7 +5,7 @@ import NewBlog from "../components/NewBlog";
 export default function SubmitBlog() {
   return (
     <div>
-      <Navbar /> Welcome
+      <Navbar />
       <NewBlog />
     </div>
   );

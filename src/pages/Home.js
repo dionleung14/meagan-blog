@@ -7,24 +7,27 @@ import API from "../utils/API";
 export default function Home() {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    console.log("hello");
-    // axios.get("/all").then((err, data) => console.log(data));
-    // API.getBlogs.then((res) => {
-    //   console.log(res);
-    // });
+    API.getBlogs().then((res) => {
+      setBlogs([...res.data]);
+    });
   }, []);
+
   return (
     <div>
       <Navbar />
-      {blogs.map((blog) => {
-        return (
-          <IndividBlog
-            title={blog.title}
-            body={blog.body}
-            userCreated={blog.userCreated}
-          />
-        );
-      })}
+      {blogs.length ? (
+        blogs.map((blog) => {
+          return (
+            <IndividBlog
+              title={blog.title}
+              body={blog.body}
+              userCreated={blog.userCreated}
+            />
+          );
+        })
+      ) : (
+        <div>Loading</div>
+      )}
     </div>
   );
 }
