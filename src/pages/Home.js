@@ -9,9 +9,9 @@ export default function Home() {
   useEffect(() => {
     console.log("hello");
     // axios.get("/all").then((err, data) => console.log(data));
-    API.getBlogs.then((res) => {
-      console.log(res);
-    });
+    // API.getBlogs.then((res) => {
+    //   console.log(res);
+    // });
   }, []);
   return (
     <div>
