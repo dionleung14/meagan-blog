@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import IndividBlog from "../components/IndividBlog";
-import axios from "axios";
 import API from "../utils/API";
 
-export default function Home() {
+export default function Home(props) {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     API.getBlogs().then((res) => {
@@ -14,20 +13,23 @@ export default function Home() {
 
   return (
     <div>
-      <Navbar />
-      {blogs.length ? (
-        blogs.map((blog) => {
-          return (
-            <IndividBlog
-              title={blog.title}
-              body={blog.body}
-              userCreated={blog.userCreated}
-            />
-          );
-        })
-      ) : (
-        <div>Loading</div>
-      )}
+      <Navbar logged={props.security} />
+      <div className="flex flex-wrap">
+        {blogs.length ? (
+          blogs.map((blog) => {
+            return (
+              <IndividBlog
+                title={blog.title}
+                category={blog.category}
+                body={blog.body}
+                userCreated={blog.userCreated}
+              />
+            );
+          })
+        ) : (
+          <div>Loading</div>
+        )}
+      </div>
     </div>
   );
 }

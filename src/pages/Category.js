@@ -1,12 +1,11 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import NewBlog from "../components/NewBlog";
 
-export default function SubmitBlog(props) {
+export default function Category(props) {
   return (
     <div>
       <Navbar logged={props.security} />
-      <NewBlog />
+      You are viewing all blogs in category {props.filter}
     </div>
   );
 }
