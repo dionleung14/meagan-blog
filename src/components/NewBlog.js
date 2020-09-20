@@ -5,6 +5,7 @@ export default function NewBlog() {
   const [blogState, setBlogState] = useState({
     title: "",
     body: "",
+    category: "",
   });
 
   const [contactMethodState, setContactMethodState] = useState({
@@ -28,7 +29,6 @@ export default function NewBlog() {
     let failureCountdown = setTimeout(() => {
       console.log("failure");
     }, 12000);
-    let { call, email, text } = contactMethodState;
     let { title, body } = blogState;
     let filledBlog = {
       title,
@@ -106,6 +106,29 @@ export default function NewBlog() {
                 required
               />
             </div>
+          </div>
+        </div>
+        <div className="mb-1 mt-4">
+          <div className="flex flex-col">
+            <label htmlFor="subject" className="">
+              Subject:
+            </label>
+            <select
+              type="name"
+              className="px-2 py-1 text-black"
+              id="subject"
+              value={blogState.category}
+              name="subject"
+              onChange={handleInput}
+              required
+            >
+              <option className="" value="Networking">
+                Networking
+              </option>
+              <option value="Inquiry">Inquiry</option>
+              <option value="Collaboration">Collaboration</option>
+              <option value="Other">Other (specify in message)</option>
+            </select>
           </div>
         </div>
 
