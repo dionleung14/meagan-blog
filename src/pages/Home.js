@@ -33,6 +33,7 @@ export default function Home(props) {
                 category={blog.category}
                 body={blog.body}
                 userCreated={blog.userCreated}
+                blogId={blog._id}
               />
             );
           })

@@ -9,6 +9,9 @@ export default {
   getBlogs: function () {
     return axios.get(`${BASE_URL}/all`);
   },
+  getOneBlog: function (blogId) {
+    return axios.get(`${BASE_URL}/blog/${blogId}`);
+  },
   submitBlog: function (newBlog) {
     return axios.post(`${BASE_URL}/blog`, newBlog);
   },
