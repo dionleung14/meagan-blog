@@ -19,7 +19,7 @@ export default function IndividBlog(props) {
       <div>
         <h1 className="text-2xl bg-red-100">{calDate.join(" ")}</h1>
         <h1 className="text-lg bg-red-400">time: {time}</h1>
-        <Link to={`/blog/${props.blogId}`} allProps={props}>
+        <Link to={`/blog/${props.blogId}`} allProps={props.children}>
           <h1 className="text-lg bg-red-400 text-center">
             Title: {props.title}
           </h1>

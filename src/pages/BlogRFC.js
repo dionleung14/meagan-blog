@@ -4,20 +4,32 @@ import Navbar from "../components/Navbar";
 import API from "../utils/API";
 
 export default function BlogRFC(props) {
+  const { id } = useParams();
   const [blog, setBlog] = useState({
     title: "",
     body: "",
+    timestamp: "",
   });
-  const { id } = useParams();
   useEffect(() => {
     API.getOneBlog(id).then((res) => {
       setBlog({
         ...blog,
         title: res.data.title,
         body: res.data.body,
+        timestamp: res.data.userCreated,
       });
     });
   }, []);
+
+  // split by spaces to get ["Thu", "Sep", "17", "2020", "11:01:26", "GMT-0700", "(Pacific", "Daylight", "Time)"]
+  let dateArr = blog.timestamp.split(" ");
+
+  // get only ["Sep", "17", "2020"]
+  let calDate = dateArr.slice(1, 4);
+
+  // get time created as ["11:01:26"]
+  let time = dateArr.slice(4, 5);
+
   return (
     <div>
       <Navbar logged={true} />
@@ -25,6 +37,9 @@ export default function BlogRFC(props) {
         <div>
           {/* <h1 className="text-2xl bg-red-100">{calDate.join(" ")}</h1> */}
           {/* <h1 className="text-lg bg-red-400">time: {time}</h1> */}
+          <h1 className="text-lg bg-red-100 text-center">
+            Date: {calDate.join(" ")}
+          </h1>
           <h1 className="text-lg bg-red-400 text-center">
             Title: {blog.title}
           </h1>
