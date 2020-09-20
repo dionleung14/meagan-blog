@@ -13,9 +13,6 @@ export default function Home(props) {
       setBlogs([...res.data.reverse()]);
     });
   }, []);
-  useEffect(() => {
-    console.log(blogs[0]);
-  }, [blogs]);
 
   return (
     <div className="">

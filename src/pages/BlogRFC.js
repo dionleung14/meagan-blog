@@ -21,8 +21,10 @@ export default function BlogRFC(props) {
     });
   }, []);
 
+  let date = Date(blog.timestamp);
+
   // split by spaces to get ["Thu", "Sep", "17", "2020", "11:01:26", "GMT-0700", "(Pacific", "Daylight", "Time)"]
-  let dateArr = blog.timestamp.split(" ");
+  let dateArr = date.split(" ");
 
   // get only ["Sep", "17", "2020"]
   let calDate = dateArr.slice(1, 4);

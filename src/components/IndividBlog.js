@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function IndividBlog(props) {
   // whole date as Thu Sep 17 2020 11:01:26 GMT-0700 (Pacific Daylight Time)
-  let date = props.userCreated;
+  let date = Date(props.userCreated);
 
   // split by spaces to get ["Thu", "Sep", "17", "2020", "11:01:26", "GMT-0700", "(Pacific", "Daylight", "Time)"]
   let dateArr = date.split(" ");
