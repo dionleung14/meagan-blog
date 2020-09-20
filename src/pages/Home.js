@@ -17,7 +17,7 @@ export default function Home(props) {
   return (
     <div className="">
       <Header />
-      <Navbar logged={false} />
+      <Navbar logged={true} />
       <img
         className="mx-auto my-6"
         src="http://placekitten.com/1200/300"
