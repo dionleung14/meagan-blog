@@ -15,7 +15,12 @@ export default function Home(props) {
   return (
     <div className="">
       <Header />
-      <Navbar />
+      <Navbar logged={false} />
+      <img
+        className="mx-auto my-6"
+        src="http://placekitten.com/1200/300"
+        alt="header"
+      />
       {blogs.length ? (
         blogs.map((blog) => {
           return (
