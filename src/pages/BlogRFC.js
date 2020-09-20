@@ -7,7 +7,10 @@ export default function BlogRFC(props) {
   const { id } = useParams();
   const [blog, setBlog] = useState({
     title: "",
-    body: "",
+    bodyOne: "",
+    bodyTwo: "",
+    bodyThree: "",
+    bodyFour: "",
     timestamp: "",
   });
   useEffect(() => {
@@ -15,7 +18,10 @@ export default function BlogRFC(props) {
       setBlog({
         ...blog,
         title: res.data.title,
-        body: res.data.body,
+        bodyOne: res.data.bodyOne,
+        bodyTwo: res.data.bodyTwo,
+        bodyThree: res.data.bodyThree,
+        bodyFour: res.data.bodyFour,
         timestamp: res.data.userCreated,
       });
     });
@@ -37,15 +43,16 @@ export default function BlogRFC(props) {
       <Navbar logged={true} />
       <div className="bg-gray-600 w-full my-4 px-2 py-4 flex flex-row justify-evenly">
         <div>
-          {/* <h1 className="text-2xl bg-red-100">{calDate.join(" ")}</h1> */}
-          {/* <h1 className="text-lg bg-red-400">time: {time}</h1> */}
-          <h1 className="text-lg bg-red-100 text-center">
+          <h1 className="text-lg bg-red-100 text-left">
             Date: {calDate.join(" ")}
           </h1>
           <h1 className="text-lg bg-red-400 text-center">
             Title: {blog.title}
           </h1>
-          <h1 className="text-lg bg-red-900">Body: {blog.body}</h1>
+          <h1 className="text-lg bg-red-900">Body 1: {blog.bodyOne}</h1>
+          <h1 className="text-lg bg-red-900">Body 2: {blog.bodyTwo}</h1>
+          <h1 className="text-lg bg-red-900">Body 3: {blog.bodyThree}</h1>
+          <h1 className="text-lg bg-red-900">Body 4: {blog.bodyFour}</h1>
         </div>
         <img className="" src="http://placeimg.com/240/240/any" alt="blog 1" />
       </div>

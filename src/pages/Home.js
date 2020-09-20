@@ -13,6 +13,12 @@ export default function Home(props) {
       setBlogs([...res.data.reverse()]);
     });
   }, []);
+  useEffect(
+    function () {
+      console.log(blogs);
+    },
+    [blogs]
+  );
 
   return (
     <div className="">
@@ -31,7 +37,10 @@ export default function Home(props) {
               <IndividBlog
                 title={blog.title}
                 category={blog.category}
-                body={blog.body}
+                bodyOne={blog.bodyOne}
+                bodyTwo={blog.bodyTwo}
+                bodyThree={blog.bodyThree}
+                bodyFour={blog.bodyFour}
                 userCreated={blog.userCreated}
                 blogId={blog._id}
               />

@@ -4,7 +4,10 @@ import API from "../utils/API";
 export default function NewBlog() {
   const [blogState, setBlogState] = useState({
     title: "",
-    body: "",
+    bodyOne: "",
+    bodyTwo: "",
+    bodyThree: "",
+    bodyFour: "",
     category: "",
   });
 
@@ -29,17 +32,23 @@ export default function NewBlog() {
     let failureCountdown = setTimeout(() => {
       console.log("failure");
     }, 12000);
-    let { title, body } = blogState;
+    let { title, bodyOne, bodyTwo, bodyThree, bodyFour } = blogState;
     let filledBlog = {
       title,
-      body,
+      bodyOne,
+      bodyTwo,
+      bodyThree,
+      bodyFour,
     };
     API.submitBlog(filledBlog).then((res) => {
       if (res.status === 200) {
         clearTimeout(failureCountdown);
         setBlogState({
           title: "",
-          body: "",
+          bodyOne: "",
+          bodyTwo: "",
+          bodyThree: "",
+          bodyFour: "",
         });
         setContactMethodState({
           email: false,
@@ -100,35 +109,11 @@ export default function NewBlog() {
                 type="text"
                 value={blogState.title}
                 onChange={handleInput}
-                placeholder="First name"
+                placeholder="Blog title"
                 name="title"
-                // id="firsts-name"
                 required
               />
             </div>
-          </div>
-        </div>
-        <div className="mb-1 mt-4">
-          <div className="flex flex-col">
-            <label htmlFor="subject" className="">
-              Subject:
-            </label>
-            <select
-              type="name"
-              className="px-2 py-1 text-black"
-              id="subject"
-              value={blogState.category}
-              name="subject"
-              onChange={handleInput}
-              required
-            >
-              <option className="" value="Networking">
-                Networking
-              </option>
-              <option value="Inquiry">Inquiry</option>
-              <option value="Collaboration">Collaboration</option>
-              <option value="Other">Other (specify in message)</option>
-            </select>
           </div>
         </div>
 
@@ -138,40 +123,95 @@ export default function NewBlog() {
           <div className="w-auto">
             <div className="flex flex-col">
               <label htmlFor="message" className="">
-                Message:
+                Blog body 1:
               </label>
               <textarea
                 type="message"
                 className="p-2 lg:w-64 w-64 lg:resize text-black"
-                id="message"
-                maxLength="500"
-                value={blogState.body}
-                name="body"
-                placeholder="Your message here, in 500 characters or fewer!"
+                value={blogState.bodyOne}
+                name="bodyOne"
+                placeholder="First chunk of text"
                 onChange={handleInput}
                 required
               />
-              {blogState.body.length ? (
-                <small>
-                  Characters remaining: {500 - blogState.body.length}
-                </small>
+              {blogState.bodyOne.length ? (
+                <small>Characters typed: {blogState.bodyOne.length}</small>
               ) : (
                 <small className="text-dclpal1-300">
                   I'm a hidden message!
                 </small>
               )}
-              {/* <small>
-          Characters remaining: {500 - formState.message.length}
-        </small> */}
             </div>
           </div>
-        </div>
-
-        {/* <!-- Preferred method of contact checkboxes --> */}
-        <div className="lg:pl-6 mb-4">
-          <h1 className="mb-1 mt-4">
-            How would you like me to respond? Check all that apply:
-          </h1>
+          <div className="w-auto">
+            <div className="flex flex-col">
+              <label htmlFor="message" className="">
+                Blog body 2:
+              </label>
+              <textarea
+                type="message"
+                className="p-2 lg:w-64 w-64 lg:resize text-black"
+                value={blogState.bodyTwo}
+                name="bodyTwo"
+                placeholder="Second chunk of text"
+                onChange={handleInput}
+                required
+              />
+              {blogState.bodyTwo.length ? (
+                <small>Characters typed: {blogState.bodyTwo.length}</small>
+              ) : (
+                <small className="text-dclpal1-300">
+                  I'm a hidden message!
+                </small>
+              )}
+            </div>
+          </div>
+          <div className="w-auto">
+            <div className="flex flex-col">
+              <label htmlFor="message" className="">
+                Blog body 3:
+              </label>
+              <textarea
+                type="message"
+                className="p-2 lg:w-64 w-64 lg:resize text-black"
+                value={blogState.bodyThree}
+                name="bodyThree"
+                placeholder="Third chunk of text"
+                onChange={handleInput}
+                required
+              />
+              {blogState.bodyThree.length ? (
+                <small>Characters typed: {blogState.bodyThree.length}</small>
+              ) : (
+                <small className="text-dclpal1-300">
+                  I'm a hidden message!
+                </small>
+              )}
+            </div>
+          </div>
+          <div className="w-auto">
+            <div className="flex flex-col">
+              <label htmlFor="message" className="">
+                Blog body 4:
+              </label>
+              <textarea
+                type="message"
+                className="p-2 lg:w-64 w-64 lg:resize text-black"
+                value={blogState.bodyFour}
+                name="bodyFour"
+                placeholder="Fourth chunk of text"
+                onChange={handleInput}
+                required
+              />
+              {blogState.bodyFour.length ? (
+                <small>Characters typed: {blogState.bodyFour.length}</small>
+              ) : (
+                <small className="text-dclpal1-300">
+                  I'm a hidden message!
+                </small>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* <!-- Submit button --> */}

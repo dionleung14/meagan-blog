@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export default function IndividBlog(props) {
   // whole date as Thu Sep 17 2020 11:01:26 GMT-0700 (Pacific Daylight Time)
   let date = Date(props.userCreated);
+  console.log(date);
 
   // split by spaces to get ["Thu", "Sep", "17", "2020", "11:01:26", "GMT-0700", "(Pacific", "Daylight", "Time)"]
   let dateArr = date.split(" ");
@@ -24,7 +25,10 @@ export default function IndividBlog(props) {
             Title: {props.title}
           </h1>
         </Link>
-        <h1 className="text-lg bg-red-900">Body: {props.body}</h1>
+        <h1 className="text-lg bg-red-900">Body 1: {props.bodyOne}</h1>
+        <h1 className="text-lg bg-red-900">Body 2: {props.bodyTwo}</h1>
+        <h1 className="text-lg bg-red-900">Body 3: {props.bodyThree}</h1>
+        <h1 className="text-lg bg-red-900">Body 4: {props.bodyFour}</h1>
       </div>
       <img className="" src="http://placeimg.com/240/240/any" alt="blog 1" />
     </div>
