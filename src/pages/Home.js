@@ -10,7 +10,7 @@ export default function Home(props) {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     API.getBlogs().then((res) => {
-      setBlogs([...res.data]);
+      setBlogs([...res.data.reverse()]);
     });
   }, []);
 
