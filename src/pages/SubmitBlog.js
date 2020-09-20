@@ -5,7 +5,6 @@ import NewBlog from "../components/NewBlog";
 export default function SubmitBlog(props) {
   return (
     <div>
-      <Navbar logged={props.security} />
       <NewBlog />
     </div>
   );

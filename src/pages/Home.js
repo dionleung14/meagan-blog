@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import IndividBlog from "../components/IndividBlog";
 import API from "../utils/API";
@@ -12,24 +13,23 @@ export default function Home(props) {
   }, []);
 
   return (
-    <div>
-      <Navbar logged={props.security} />
-      <div className="flex flex-wrap">
-        {blogs.length ? (
-          blogs.map((blog) => {
-            return (
-              <IndividBlog
-                title={blog.title}
-                category={blog.category}
-                body={blog.body}
-                userCreated={blog.userCreated}
-              />
-            );
-          })
-        ) : (
-          <div>Loading</div>
-        )}
-      </div>
+    <div className="">
+      <Header />
+      <Navbar />
+      {blogs.length ? (
+        blogs.map((blog) => {
+          return (
+            <IndividBlog
+              title={blog.title}
+              category={blog.category}
+              body={blog.body}
+              userCreated={blog.userCreated}
+            />
+          );
+        })
+      ) : (
+        <div>Loading</div>
+      )}
     </div>
   );
 }

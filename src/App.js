@@ -7,10 +7,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 // import logo from "./logo.svg";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState({ logged: false });
+  const handleToggle = () =>
+    setLoggedIn((s) => ({ ...s, logged: !loggedIn.logged }));
   return (
     <Router>
-      <Navbar logged={loggedIn} />
+      {/* <Navbar logged={loggedIn} /> */}
       <Route exact path="/">
         <Home security={loggedIn} />
       </Route>
