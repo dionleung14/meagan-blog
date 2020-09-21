@@ -61,17 +61,45 @@ export default function BlogRFC(props) {
               {/* </Link> */}
             </span>
           </h1>
-          <Link to="/">
-            <h1 className="text-lg bg-red-400 text-center">
-              Title: {blog.title}
-            </h1>
-          </Link>
-          <h1 className="text-lg bg-red-900">Body 1: {blog.bodyOne}</h1>
-          <h1 className="text-lg bg-red-900">Body 2: {blog.bodyTwo}</h1>
-          <h1 className="text-lg bg-red-900">Body 3: {blog.bodyThree}</h1>
-          <h1 className="text-lg bg-red-900">Body 4: {blog.bodyFour}</h1>
+          <h3>time: {time}</h3>
+          <h3>array: {dateArr}</h3>
+          <h1 className="text-lg bg-red-700 text-center">
+            Title: {blog.title}
+          </h1>
+          <div className="flex flex-row text-lg bg-red-200">
+            <h1>Body 1: {blog.bodyOne}</h1>
+            <img
+              className=""
+              src="http://placeimg.com/240/240/any"
+              alt="blog 1"
+            />
+          </div>
+          <div className="flex flex-row text-lg bg-red-300">
+            <img
+              className=""
+              src="http://placeimg.com/240/240/any"
+              alt="blog 1"
+            />
+            <h1>Body 2: {blog.bodyTwo}</h1>
+          </div>
+          <div className="flex flex-row text-lg bg-red-400">
+            <h1>Body 3: {blog.bodyThree}</h1>
+            <img
+              className=""
+              src="http://placeimg.com/240/240/any"
+              alt="blog 1"
+            />
+          </div>
+          <div className="flex flex-row text-lg bg-red-500">
+            <img
+              className=""
+              src="http://placeimg.com/240/240/any"
+              alt="blog 1"
+            />
+            <h1>Body 4: {blog.bodyFour}</h1>
+          </div>
         </div>
-        <img className="" src="http://placeimg.com/240/240/any" alt="blog 1" />
+        {/* <img className="" src="http://placeimg.com/240/240/any" alt="blog 1" /> */}
       </div>
     </div>
   );
