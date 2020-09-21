@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import API from "../utils/API";
 
 export default function BlogRFC(props) {
   const { id } = useParams();
+  const history = useHistory();
   const [blog, setBlog] = useState({
     title: "",
     bodyOne: "",
@@ -23,6 +24,7 @@ export default function BlogRFC(props) {
         bodyThree: res.data.bodyThree,
         bodyFour: res.data.bodyFour,
         timestamp: res.data.userCreated,
+        id: res.data._id,
       });
     });
   }, []);
@@ -38,13 +40,23 @@ export default function BlogRFC(props) {
   // get time created as ["11:01:26"]
   let time = dateArr.slice(4, 5);
 
+  const deleteMe = () => {
+    // console.log(id);
+    API.deleteOneBlog(id).then((res) => {
+      history.goBack();
+    });
+  };
+
   return (
     <div>
       <Navbar logged={true} />
       <div className="bg-gray-600 w-full my-4 px-2 py-4 flex flex-row justify-evenly">
         <div>
           <h1 className="text-lg bg-red-100 text-left">
-            Date: {calDate.join(" ")}
+            Date: {calDate.join(" ")}{" "}
+            <span>
+              <button onClick={deleteMe}>Delete me</button>
+            </span>
           </h1>
           <h1 className="text-lg bg-red-400 text-center">
             Title: {blog.title}

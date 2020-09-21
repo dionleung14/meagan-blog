@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function IndividBlog(props) {
   // whole date as Thu Sep 17 2020 11:01:26 GMT-0700 (Pacific Daylight Time)
-  // console.log("database date is " + props.userCreated);
+  console.log("database date is " + props.userCreated);
   let date = props.userCreated;
   // console.log("converted date is " + date);
 
