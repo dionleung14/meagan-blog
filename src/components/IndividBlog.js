@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 
 export default function IndividBlog(props) {
   // whole date as Thu Sep 17 2020 11:01:26 GMT-0700 (Pacific Daylight Time)
-  let date = Date(props.userCreated);
-  console.log(date);
+  // console.log("database date is " + props.userCreated);
+  let date = props.userCreated;
+  // console.log("converted date is " + date);
 
   // split by spaces to get ["Thu", "Sep", "17", "2020", "11:01:26", "GMT-0700", "(Pacific", "Daylight", "Time)"]
   let dateArr = date.split(" ");
+  // console.log(dateArr);
 
   // get only ["Sep", "17", "2020"]
   let calDate = dateArr.slice(1, 4);
+  // console.log(calDate);
 
   // get time created as ["11:01:26"]
   let time = dateArr.slice(4, 5);

@@ -13,12 +13,12 @@ export default function Home(props) {
       setBlogs([...res.data.reverse()]);
     });
   }, []);
-  useEffect(
-    function () {
-      console.log(blogs);
-    },
-    [blogs]
-  );
+  // useEffect(
+  //   function () {
+  //     console.log(blogs);
+  //   },
+  //   [blogs]
+  // );
 
   return (
     <div className="">
