@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import API from "../utils/API";
 
@@ -42,7 +42,8 @@ export default function BlogRFC(props) {
 
   const deleteMe = () => {
     // console.log(id);
-    API.deleteOneBlog(id).then((res) => {
+    API.deleteOneBlog(blog.id).then((res) => {
+      // console.log(res);
       history.goBack();
     });
   };
@@ -54,13 +55,17 @@ export default function BlogRFC(props) {
         <div>
           <h1 className="text-lg bg-red-100 text-left">
             Date: {calDate.join(" ")}{" "}
-            <span>
+            <span className="bg-red-600 text-white px-2">
+              {/* <Link to="/"> */}
               <button onClick={deleteMe}>Delete me</button>
+              {/* </Link> */}
             </span>
           </h1>
-          <h1 className="text-lg bg-red-400 text-center">
-            Title: {blog.title}
-          </h1>
+          <Link to="/">
+            <h1 className="text-lg bg-red-400 text-center">
+              Title: {blog.title}
+            </h1>
+          </Link>
           <h1 className="text-lg bg-red-900">Body 1: {blog.bodyOne}</h1>
           <h1 className="text-lg bg-red-900">Body 2: {blog.bodyTwo}</h1>
           <h1 className="text-lg bg-red-900">Body 3: {blog.bodyThree}</h1>

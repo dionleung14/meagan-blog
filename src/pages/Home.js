@@ -19,7 +19,8 @@ export default function Home(props) {
   //   },
   //   [blogs]
   // );
-
+  // console.log("this is a date: 1600660776394");
+  // console.log(Date(1600660776394));
   return (
     <div className="">
       <Header />
