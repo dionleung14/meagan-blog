@@ -12,6 +12,7 @@ export default function BlogRFC(props) {
     bodyTwo: "",
     bodyThree: "",
     bodyFour: "",
+    imageOneURL: "",
     timestamp: "",
   });
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function BlogRFC(props) {
         bodyTwo: res.data.bodyTwo,
         bodyThree: res.data.bodyThree,
         bodyFour: res.data.bodyFour,
+        imageOneURL: res.data.imageOneURL,
         timestamp: res.data.userCreated,
         id: res.data._id,
       });
@@ -68,11 +70,7 @@ export default function BlogRFC(props) {
           </h1>
           <div className="flex flex-row text-lg bg-red-200">
             <h1>Body 1: {blog.bodyOne}</h1>
-            <img
-              className=""
-              src="http://placeimg.com/240/240/any"
-              alt="blog 1"
-            />
+            <img className="" src={blog.imageOneURL} alt="blog 1" />
           </div>
           <div className="flex flex-row text-lg bg-red-300">
             <img

@@ -13,12 +13,16 @@ export default function Home(props) {
       setBlogs([...res.data.reverse()]);
     });
   }, []);
-  // useEffect(
-  //   function () {
-  //     console.log(blogs);
-  //   },
-  //   [blogs]
-  // );
+  useEffect(() => {
+    blogs.forEach((blog) => {
+      blog.adjustedTime = blog.userCreated * 1000;
+    });
+    // blogs.forEach((blog) => {
+    //    console.log(typeof blog.userCreated);
+    //    console.log(typeof blog.adjustedTime);
+    // });
+  }, [blogs]);
+
   // console.log("this is a date: 1600660776394");
   // console.log(Date(1600660776394));
   return (
