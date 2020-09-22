@@ -4,8 +4,12 @@ import { Link } from "react-router-dom";
 export default function IndividBlog(props) {
   // whole date as Thu Sep 17 2020 11:01:26 GMT-0700 (Pacific Daylight Time)
   // console.log(Date(props.userCreated));
-  // console.log(props.userCreated);
+  // console.log(Date(props.userCreated));
+  // console.log(Date(props.userCreated * 1000));
   let date = props.userCreated;
+  // console.log(typeof Date(date));
+  // let dateSec = date * 1000;
+  // let dateObj = Date(dateSec);
   // console.log("converted date is " + Date(date));
 
   // split by spaces to get ["Thu", "Sep", "17", "2020", "11:01:26", "GMT-0700", "(Pacific", "Daylight", "Time)"]
