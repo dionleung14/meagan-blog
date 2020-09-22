@@ -12,7 +12,13 @@ export default {
   getOneBlog: function (blogId) {
     return axios.get(`${BASE_URL}/blog/${blogId}`);
   },
+  deleteOneBlog: function (blogId) {
+    return axios.delete(`${BASE_URL}/blog/${blogId}`);
+  },
   submitBlog: function (newBlog) {
     return axios.post(`${BASE_URL}/blog`, newBlog);
   },
+  // submitPhoto: function(newImage) {
+  //   return axios.
+  // }
 };

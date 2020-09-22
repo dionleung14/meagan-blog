@@ -13,7 +13,14 @@ export default function Home(props) {
       setBlogs([...res.data.reverse()]);
     });
   }, []);
-
+  // useEffect(
+  //   function () {
+  //     console.log(blogs);
+  //   },
+  //   [blogs]
+  // );
+  // console.log("this is a date: 1600660776394");
+  // console.log(Date(1600660776394));
   return (
     <div className="">
       <Header />
@@ -31,7 +38,10 @@ export default function Home(props) {
               <IndividBlog
                 title={blog.title}
                 category={blog.category}
-                body={blog.body}
+                bodyOne={blog.bodyOne}
+                bodyTwo={blog.bodyTwo}
+                bodyThree={blog.bodyThree}
+                bodyFour={blog.bodyFour}
                 userCreated={blog.userCreated}
                 blogId={blog._id}
               />
