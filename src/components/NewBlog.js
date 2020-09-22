@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API from "../utils/API";
+// import axios from "axios";
 
 export default function NewBlog() {
   const [blogState, setBlogState] = useState({
@@ -8,13 +9,18 @@ export default function NewBlog() {
     bodyTwo: "",
     bodyThree: "",
     bodyFour: "",
-    category: "",
+    // category: "",
+    imageOneURL: "",
+    imageTwoURL: "",
+    imageThreeURL: "",
+    imageFourURL: "",
   });
 
-  const [contactMethodState, setContactMethodState] = useState({
-    email: false,
-    call: false,
-    text: false,
+  const [imageState, setImageState] = useState({
+    imageOne: "",
+    imageTwo: "",
+    imageThree: "",
+    imageFour: "",
   });
 
   const [formSuccessState, setFormSuccessState] = useState({
@@ -23,37 +29,84 @@ export default function NewBlog() {
     failure: false,
   });
 
+  const cloudName = "leungdion";
+  const resourceType = "image";
+  const cloudPreset = "meaganblog";
+  const cloudinaryURL = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`;
+
   const handleNewBlog = (event) => {
     event.preventDefault();
+    // display sending message
     setFormSuccessState({
       ...formSuccessState,
       sendingState: true,
     });
+    // hardcoded self-check, 12 second countdown for sending a blog
     let failureCountdown = setTimeout(() => {
+      setFormSuccessState({
+        ...formSuccessState,
+        sendingState: false,
+        failure: true,
+      });
       console.log("failure");
     }, 12000);
-    let { title, bodyOne, bodyTwo, bodyThree, bodyFour } = blogState;
+    // send the image to cloudinary
+    // let uploadImage = new FormData();
+    // uploadImage.append("file", imageState.imageOne);
+    // uploadImage.append("upload_preset", cloudPreset);
+    // fetch(cloudinaryURL, {
+    //   method: "POST",
+    //   body: uploadImage,
+    // })
+    //   .then((response) => {
+    //     return response.text();
+    //   })
+    //   .then((data) => {
+    //     let returnedData = JSON.parse(data);
+    // get the URL back and put it in blogState as imageOneURL
+    // setBlogState({
+    //   ...blogState,
+    //   imageOneURL: returnedData.url,
+    // });
+    // })
+    // .then(() => {
+    let {
+      title,
+      bodyOne,
+      bodyTwo,
+      bodyThree,
+      bodyFour,
+      imageOneURL,
+      imageTwoURL,
+      imageThreeURL,
+      imageFourURL,
+    } = blogState;
+    // let { imageOneURL } = imageState;
     let filledBlog = {
       title,
       bodyOne,
       bodyTwo,
       bodyThree,
       bodyFour,
+      imageOneURL,
+      imageTwoURL,
+      imageThreeURL,
+      imageFourURL,
     };
     API.submitBlog(filledBlog).then((res) => {
       if (res.status === 200) {
         clearTimeout(failureCountdown);
-        setBlogState({
-          title: "",
-          bodyOne: "",
-          bodyTwo: "",
-          bodyThree: "",
-          bodyFour: "",
-        });
-        setContactMethodState({
-          email: false,
-          call: false,
-          text: false,
+        // setBlogState({
+        //   title: "",
+        //   bodyOne: "",
+        //   bodyTwo: "",
+        //   bodyThree: "",
+        //   bodyFour: "",
+        //   imageOneURL: "",
+        // });
+        setImageState({
+          imageOne: "",
+          // imageOneURL: "",
         });
         setFormSuccessState({
           formSuccess: true,
@@ -73,6 +126,8 @@ export default function NewBlog() {
         });
       }
     });
+    // });
+    // });
     // .catch((err) => console.log(err))
     // );
     // console.log(contactFormFilled);
@@ -87,6 +142,53 @@ export default function NewBlog() {
       ...blogState,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleNewPhoto = (event) => {
+    event.preventDefault();
+    // let returnURL = "";
+    let uploadImage = new FormData();
+    // for (let i = 0; i < imageState.length; i++) {
+    // for (const [key, value] of Object.entries(imageState)) {
+    //   uploadImage.append("file", value);
+    //   uploadImage.append("upload_preset", cloudPreset);
+    // }
+    // console.log("finished appending");
+    // console.log(uploadImage.entries());
+    uploadImage.append("file", imageState.imageOne);
+    // uploadImage.append("file", imageState.imageTwo);
+    // uploadImage.append("file", imageState.imageThree);
+    // uploadImage.append("file", imageState.imageFour);
+    uploadImage.append("upload_preset", cloudPreset);
+    fetch(cloudinaryURL, {
+      method: "POST",
+      body: uploadImage,
+    })
+      .then((response) => {
+        return response.text();
+      })
+      .then((data) => {
+        // returnURL = data.url;
+        // console.log(data.url);
+        // console.log(JSON.parse(data));
+        let returnedData = JSON.parse(data);
+        // a string!!!
+        setBlogState({
+          ...blogState,
+          imageOneURL: returnedData.url,
+        });
+      });
+    // console.log(returnURL);
+  };
+
+  const imageChange = (event) => {
+    setImageState({
+      ...imageState,
+      [event.target.name]: event.target.files[0],
+    });
+
+    // console.log("event.target.value is " + event.target.value);
+    // console.log("event.target.files is " + event.target.files[0]);
   };
 
   return (
@@ -120,7 +222,7 @@ export default function NewBlog() {
         {/* Subject and actual message */}
         <div className="flex flex-col items-start lg:px-6">
           {/* <!-- Message --> */}
-          <div className="w-auto">
+          <div className="w-auto flex flex-row">
             <div className="flex flex-col">
               <label htmlFor="message" className="">
                 Blog body 1:
@@ -142,8 +244,9 @@ export default function NewBlog() {
                 </small>
               )}
             </div>
+            {/* <input type="file" name="imageOne" onChange={imageChange} /> */}
           </div>
-          <div className="w-auto">
+          <div className="w-auto flex flex-row">
             <div className="flex flex-col">
               <label htmlFor="message" className="">
                 Blog body 2:
@@ -155,7 +258,7 @@ export default function NewBlog() {
                 name="bodyTwo"
                 placeholder="Second chunk of text"
                 onChange={handleInput}
-                required
+                // required
               />
               {blogState.bodyTwo.length ? (
                 <small>Characters typed: {blogState.bodyTwo.length}</small>
@@ -165,8 +268,9 @@ export default function NewBlog() {
                 </small>
               )}
             </div>
+            {/* <input type="file" /> */}
           </div>
-          <div className="w-auto">
+          <div className="w-auto flex flex-row">
             <div className="flex flex-col">
               <label htmlFor="message" className="">
                 Blog body 3:
@@ -178,7 +282,7 @@ export default function NewBlog() {
                 name="bodyThree"
                 placeholder="Third chunk of text"
                 onChange={handleInput}
-                required
+                // required
               />
               {blogState.bodyThree.length ? (
                 <small>Characters typed: {blogState.bodyThree.length}</small>
@@ -188,8 +292,9 @@ export default function NewBlog() {
                 </small>
               )}
             </div>
+            {/* <input type="file" /> */}
           </div>
-          <div className="w-auto">
+          <div className="w-auto flex flex-row">
             <div className="flex flex-col">
               <label htmlFor="message" className="">
                 Blog body 4:
@@ -201,7 +306,7 @@ export default function NewBlog() {
                 name="bodyFour"
                 placeholder="Fourth chunk of text"
                 onChange={handleInput}
-                required
+                // required
               />
               {blogState.bodyFour.length ? (
                 <small>Characters typed: {blogState.bodyFour.length}</small>
@@ -211,6 +316,7 @@ export default function NewBlog() {
                 </small>
               )}
             </div>
+            {/* <input type="file" /> */}
           </div>
         </div>
 
@@ -244,6 +350,30 @@ export default function NewBlog() {
           <br />
           <br />
         </div>
+      </form>
+      <form
+        className="lg:w-5/6 w-full lg:mx-auto p-2 border border-gray-300 bg-green-300"
+        id="contact-form"
+        onSubmit={handleNewPhoto}
+      >
+        <div className="w-auto flex flex-row">
+          <input type="file" name="imageOne" onChange={imageChange} />
+        </div>
+        <div className="w-auto flex flex-row">
+          <input type="file" name="imageTwo" onChange={imageChange} />
+        </div>
+        <div className="w-auto flex flex-row">
+          <input type="file" name="imageThree" onChange={imageChange} />
+        </div>
+        <div className="w-auto flex flex-row">
+          <input type="file" name="imageFour" onChange={imageChange} />
+        </div>
+        <button
+          type="submit"
+          className="rounded py-2 px-6 bg-dclpal1-400 hover:bg-dclpal1-200 text-xl hover:text-white"
+        >
+          Upload image(s)
+        </button>
       </form>
     </div>
   );

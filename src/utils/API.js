@@ -18,4 +18,7 @@ export default {
   submitBlog: function (newBlog) {
     return axios.post(`${BASE_URL}/blog`, newBlog);
   },
+  // submitPhoto: function(newImage) {
+  //   return axios.
+  // }
 };
