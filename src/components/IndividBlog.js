@@ -32,7 +32,11 @@ export default function IndividBlog(props) {
         <h1 className="text-lg bg-red-900">Body 3: {props.bodyThree}</h1>
         <h1 className="text-lg bg-red-900">Body 4: {props.bodyFour}</h1>
       </div>
-      <img className="" src="http://placeimg.com/240/240/any" alt="blog 1" />
+      {props.imageOneURL.length ? (
+        <img className="" src={props.imageOneURL} alt="blog 1" />
+      ) : (
+        <img className="" src="http://placeimg.com/240/240/any" alt="blog 1" />
+      )}
     </div>
   );
 }

@@ -46,6 +46,10 @@ export default function Home(props) {
                 bodyTwo={blog.bodyTwo}
                 bodyThree={blog.bodyThree}
                 bodyFour={blog.bodyFour}
+                imageOneURL={blog.imageOneURL}
+                imageTwoURL={blog.imageTwoURL}
+                imageThreeURL={blog.imageThreeURL}
+                imageFourURL={blog.imageFourURL}
                 userCreated={blog.userCreated}
                 blogId={blog._id}
               />

@@ -6,15 +6,19 @@ export default function NewBlog() {
   const [blogState, setBlogState] = useState({
     title: "",
     bodyOne: "",
-    bodyTwo: "",
-    bodyThree: "",
+    bodyTwo: "reset",
+    bodyThree: "or no",
     bodyFour: "",
     // category: "",
-    imageOneURL: "",
-    imageTwoURL: "",
-    imageThreeURL: "",
-    imageFourURL: "",
+    // imageOne: "",
+    // imageTwo: "",
+    // imageThree: "",
+    // imageFour: "",
   });
+
+  const [previewSource, setPreviewSource] = useState();
+
+  const [imageURL, setImageURL] = useState({});
 
   const [imageState, setImageState] = useState({
     imageOne: "",
@@ -143,11 +147,43 @@ export default function NewBlog() {
       [event.target.name]: event.target.value,
     });
   };
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result);
+    };
+  };
 
   const handleNewPhoto = (event) => {
     event.preventDefault();
     // let returnURL = "";
-    let uploadImage = new FormData();
+    for (const [key, value] of Object.entries(imageState)) {
+      // let stateKey = key + "URL";
+      if (value) {
+        let uploadImage = new FormData();
+        uploadImage.append("file", value);
+        uploadImage.append("upload_preset", cloudPreset);
+        fetch(cloudinaryURL, {
+          method: "POST",
+          body: uploadImage,
+        })
+          .then((response) => {
+            return response.text();
+          })
+          .then((data) => {
+            let returnedData = JSON.parse(data);
+            // a string!!!
+            // let blogStateKey = [key] + "URL"
+            setBlogState({
+              ...blogState,
+              // imageURL.urlArr.push(returnedData.url)
+              [key]: returnedData.url,
+            });
+          });
+      }
+    }
+
     // for (let i = 0; i < imageState.length; i++) {
     // for (const [key, value] of Object.entries(imageState)) {
     //   uploadImage.append("file", value);
@@ -155,29 +191,32 @@ export default function NewBlog() {
     // }
     // console.log("finished appending");
     // console.log(uploadImage.entries());
-    uploadImage.append("file", imageState.imageOne);
+
+    // uploadImage.append("file", imageState.imageOne);
+
     // uploadImage.append("file", imageState.imageTwo);
     // uploadImage.append("file", imageState.imageThree);
     // uploadImage.append("file", imageState.imageFour);
-    uploadImage.append("upload_preset", cloudPreset);
-    fetch(cloudinaryURL, {
-      method: "POST",
-      body: uploadImage,
-    })
-      .then((response) => {
-        return response.text();
-      })
-      .then((data) => {
-        // returnURL = data.url;
-        // console.log(data.url);
-        // console.log(JSON.parse(data));
-        let returnedData = JSON.parse(data);
-        // a string!!!
-        setBlogState({
-          ...blogState,
-          imageOneURL: returnedData.url,
-        });
-      });
+
+    // uploadImage.append("upload_preset", cloudPreset);
+    // fetch(cloudinaryURL, {
+    //   method: "POST",
+    //   body: uploadImage,
+    // })
+    //   .then((response) => {
+    //     return response.text();
+    //   })
+    //   .then((data) => {
+    //     // returnURL = data.url;
+    //     // console.log(data.url);
+    //     // console.log(JSON.parse(data));
+    //     let returnedData = JSON.parse(data);
+    //     // a string!!!
+    //     setBlogState({
+    //       ...blogState,
+    //       imageOneURL: returnedData.url,
+    //     });
+    //   });
     // console.log(returnURL);
   };
 
@@ -186,6 +225,7 @@ export default function NewBlog() {
       ...imageState,
       [event.target.name]: event.target.files[0],
     });
+    previewFile(event.target.files[0]);
 
     // console.log("event.target.value is " + event.target.value);
     // console.log("event.target.files is " + event.target.files[0]);
@@ -358,6 +398,7 @@ export default function NewBlog() {
       >
         <div className="w-auto flex flex-row">
           <input type="file" name="imageOne" onChange={imageChange} />
+          {previewSource && <img className="w-40" src={previewSource} />}
         </div>
         <div className="w-auto flex flex-row">
           <input type="file" name="imageTwo" onChange={imageChange} />
