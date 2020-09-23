@@ -6,8 +6,8 @@ export default function NewBlog() {
   const [blogState, setBlogState] = useState({
     title: "",
     bodyOne: "",
-    bodyTwo: "reset",
-    bodyThree: "or no",
+    bodyTwo: "",
+    bodyThree: "",
     bodyFour: "",
     // category: "",
     // imageOne: "",
@@ -17,8 +17,12 @@ export default function NewBlog() {
   });
 
   const [previewSource, setPreviewSource] = useState();
+  // pv1: "",
+  // pv2: "",
+  // pv3: "",
+  // pv4: "",
 
-  const [imageURL, setImageURL] = useState({});
+  // const [imageURL, setImageURL] = useState({});
 
   const [imageState, setImageState] = useState({
     imageOne: "",
@@ -173,6 +177,7 @@ export default function NewBlog() {
           })
           .then((data) => {
             let returnedData = JSON.parse(data);
+            console.log(key + "--------" + returnedData.url);
             // a string!!!
             // let blogStateKey = [key] + "URL"
             setBlogState({
