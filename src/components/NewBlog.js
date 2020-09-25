@@ -10,10 +10,10 @@ export default function NewBlog() {
     bodyThree: "",
     bodyFour: "",
     // category: "",
-    // imageOne: "",
-    // imageTwo: "",
-    // imageThree: "",
-    // imageFour: "",
+    imageOne: "",
+    imageTwo: "",
+    imageThree: "",
+    imageFour: "",
   });
 
   const [previewSource, setPreviewSource] = useState();
@@ -159,7 +159,47 @@ export default function NewBlog() {
     };
   };
 
-  const handleNewPhoto = (event) => {
+  const settingBlogState = async (key, url) => {
+    setBlogState({
+      ...blogState,
+      // imageURL.urlArr.push(returnedData.url)
+      [key]: url,
+    });
+    return blogState;
+  };
+
+  const handleNewPhotos = (event) => {
+    event.preventDefault();
+    const files = document.querySelector("[type=file]").files;
+    const formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formData.append("file", files[i]);
+      formData.append("upload_preset", cloudPreset);
+
+      fetch(cloudinaryURL, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => {
+          return response.text();
+        })
+        .then((data) => {
+          let returnedData = JSON.parse(data);
+          console.log(returnedData.url);
+          // console.log("before setting state: ", blogState);
+          // a string!!!
+          // let blogStateKey = [key] + "URL"
+          // await settingBlogState(key, returnedData.url);
+          // return setBlogState({
+          //   ...blogState,
+          //   // imageURL.urlArr.push(returnedData.url)
+          //   [key]: returnedData.url,
+          // });
+        });
+    }
+  };
+
+  const handleNewPhoto = async (event) => {
     event.preventDefault();
     // let returnURL = "";
     for (const [key, value] of Object.entries(imageState)) {
@@ -175,16 +215,23 @@ export default function NewBlog() {
           .then((response) => {
             return response.text();
           })
-          .then((data) => {
+          .then(async (data) => {
             let returnedData = JSON.parse(data);
-            console.log(key + "--------" + returnedData.url);
+            console.log(key + " -------- " + returnedData.url);
+            console.log("before setting state: ", blogState);
             // a string!!!
             // let blogStateKey = [key] + "URL"
-            setBlogState({
-              ...blogState,
-              // imageURL.urlArr.push(returnedData.url)
-              [key]: returnedData.url,
-            });
+            await settingBlogState(key, returnedData.url);
+            // return setBlogState({
+            //   ...blogState,
+            //   // imageURL.urlArr.push(returnedData.url)
+            //   [key]: returnedData.url,
+            // });
+          })
+          .then((state) => {
+            console.log("after setting state: ", blogState);
+            console.log(state);
+            // return
           });
       }
     }
@@ -399,11 +446,16 @@ export default function NewBlog() {
       <form
         className="lg:w-5/6 w-full lg:mx-auto p-2 border border-gray-300 bg-green-300"
         id="contact-form"
-        onSubmit={handleNewPhoto}
+        // onSubmit={handleNewPhoto}
+        onSubmit={handleNewPhotos}
       >
         <div className="w-auto flex flex-row">
+          <input type="file" name="images" onChange={imageChange} multiple />
+          {/* {previewSource && <img className="w-40" src={previewSource} />} */}
+        </div>
+        <div className="w-auto flex flex-row">
           <input type="file" name="imageOne" onChange={imageChange} />
-          {previewSource && <img className="w-40" src={previewSource} />}
+          {/* {previewSource && <img className="w-40" src={previewSource} />} */}
         </div>
         <div className="w-auto flex flex-row">
           <input type="file" name="imageTwo" onChange={imageChange} />
