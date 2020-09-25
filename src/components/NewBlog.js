@@ -6,19 +6,23 @@ export default function NewBlog() {
   const [blogState, setBlogState] = useState({
     title: "",
     bodyOne: "",
-    bodyTwo: "reset",
-    bodyThree: "or no",
+    bodyTwo: "",
+    bodyThree: "",
     bodyFour: "",
     // category: "",
-    // imageOne: "",
-    // imageTwo: "",
-    // imageThree: "",
-    // imageFour: "",
+    imageOne: "",
+    imageTwo: "",
+    imageThree: "",
+    imageFour: "",
   });
 
   const [previewSource, setPreviewSource] = useState();
+  // pv1: "",
+  // pv2: "",
+  // pv3: "",
+  // pv4: "",
 
-  const [imageURL, setImageURL] = useState({});
+  // const [imageURL, setImageURL] = useState({});
 
   const [imageState, setImageState] = useState({
     imageOne: "",
@@ -155,69 +159,207 @@ export default function NewBlog() {
     };
   };
 
-  const handleNewPhoto = (event) => {
+  const settingBlogState = async (key, url) => {
+    setBlogState({
+      ...blogState,
+      // imageURL.urlArr.push(returnedData.url)
+      [key]: url,
+    });
+    return blogState;
+  };
+
+  // const handleNewPhotos = (event) => {
+  //   event.preventDefault();
+  //   const files = document.querySelector("[type=file]").files;
+  //   const formData = new FormData();
+  //   for (let i = 0; i < files.length; i++) {
+
+  //     formData.append("file", files[i]);
+  //     formData.append("upload_preset", cloudPreset);
+
+  //     fetch(cloudinaryURL, {
+  //       method: "POST",
+  //       body: formData,
+  //     })
+  //       .then((response) => {
+  //         return response.text();
+  //       })
+  //       .then((data) => {
+  //         let returnedData = JSON.parse(data);
+  //         console.log(returnedData.url);
+  //         // console.log("before setting state: ", blogState);
+  //         // a string!!!
+  //         // let blogStateKey = [key] + "URL"
+  //         // await settingBlogState(key, returnedData.url);
+  //         setBlogState({
+  //           ...blogState,
+  //           // imageURL.urlArr.push(returnedData.url)
+  //           [key]: returnedData.url,
+  //         // });
+  //       });
+  //   }
+  // };
+
+  // const handleNewPhoto = async (event) => {
+  //   event.preventDefault();
+  //   // let returnURL = "";
+  //   for (const [key, value] of Object.entries(imageState)) {
+  //     // let stateKey = key + "URL";
+  //     if (value) {
+  //       let uploadImage = new FormData();
+  //       uploadImage.append("file", value);
+  //       uploadImage.append("upload_preset", cloudPreset);
+  //       fetch(cloudinaryURL, {
+  //         method: "POST",
+  //         body: uploadImage,
+  //       })
+  //         .then((response) => {
+  //           return response.text();
+  //         })
+  //         .then(async (data) => {
+  //           let returnedData = JSON.parse(data);
+  //           console.log(key + " -------- " + returnedData.url);
+  //           console.log("before setting state: ", blogState);
+  //           // a string!!!
+  //           // let blogStateKey = [key] + "URL"
+  //           await settingBlogState(key, returnedData.url);
+  //           // return setBlogState({
+  //           //   ...blogState,
+  //           //   // imageURL.urlArr.push(returnedData.url)
+  //           //   [key]: returnedData.url,
+  //           // });
+  //         })
+  //         .then((state) => {
+  //           console.log("after setting state: ", blogState);
+  //           console.log(state);
+  //           // return
+  //         });
+  //     }
+  //   }
+
+  // for (let i = 0; i < imageState.length; i++) {
+  // for (const [key, value] of Object.entries(imageState)) {
+  //   uploadImage.append("file", value);
+  //   uploadImage.append("upload_preset", cloudPreset);
+  // }
+  // console.log("finished appending");
+  // console.log(uploadImage.entries());
+
+  // uploadImage.append("file", imageState.imageOne);
+
+  // uploadImage.append("file", imageState.imageTwo);
+  // uploadImage.append("file", imageState.imageThree);
+  // uploadImage.append("file", imageState.imageFour);
+
+  // uploadImage.append("upload_preset", cloudPreset);
+  // fetch(cloudinaryURL, {
+  //   method: "POST",
+  //   body: uploadImage,
+  // })
+  //   .then((response) => {
+  //     return response.text();
+  //   })
+  //   .then((data) => {
+  //     // returnURL = data.url;
+  //     // console.log(data.url);
+  //     // console.log(JSON.parse(data));
+  //     let returnedData = JSON.parse(data);
+  //     // a string!!!
+  //     setBlogState({
+  //       ...blogState,
+  //       imageOneURL: returnedData.url,
+  //     });
+  //   });
+  // console.log(returnURL);
+  // };
+
+  const handleNewPhoto1 = (event) => {
     event.preventDefault();
-    // let returnURL = "";
-    for (const [key, value] of Object.entries(imageState)) {
-      // let stateKey = key + "URL";
-      if (value) {
-        let uploadImage = new FormData();
-        uploadImage.append("file", value);
-        uploadImage.append("upload_preset", cloudPreset);
-        fetch(cloudinaryURL, {
-          method: "POST",
-          body: uploadImage,
+    if (imageState.imageOne) {
+      let uploadImage = new FormData();
+      uploadImage.append("file", imageState.imageOne);
+      uploadImage.append("upload_preset", cloudPreset);
+      fetch(cloudinaryURL, {
+        method: "POST",
+        body: uploadImage,
+      })
+        .then((response) => {
+          return response.text();
         })
-          .then((response) => {
-            return response.text();
-          })
-          .then((data) => {
-            let returnedData = JSON.parse(data);
-            // a string!!!
-            // let blogStateKey = [key] + "URL"
-            setBlogState({
-              ...blogState,
-              // imageURL.urlArr.push(returnedData.url)
-              [key]: returnedData.url,
-            });
+        .then((data) => {
+          let returnedData = JSON.parse(data);
+          setBlogState({
+            ...blogState,
+            imageOneURL: returnedData.url,
           });
-      }
+        });
     }
-
-    // for (let i = 0; i < imageState.length; i++) {
-    // for (const [key, value] of Object.entries(imageState)) {
-    //   uploadImage.append("file", value);
-    //   uploadImage.append("upload_preset", cloudPreset);
-    // }
-    // console.log("finished appending");
-    // console.log(uploadImage.entries());
-
-    // uploadImage.append("file", imageState.imageOne);
-
-    // uploadImage.append("file", imageState.imageTwo);
-    // uploadImage.append("file", imageState.imageThree);
-    // uploadImage.append("file", imageState.imageFour);
-
-    // uploadImage.append("upload_preset", cloudPreset);
-    // fetch(cloudinaryURL, {
-    //   method: "POST",
-    //   body: uploadImage,
-    // })
-    //   .then((response) => {
-    //     return response.text();
-    //   })
-    //   .then((data) => {
-    //     // returnURL = data.url;
-    //     // console.log(data.url);
-    //     // console.log(JSON.parse(data));
-    //     let returnedData = JSON.parse(data);
-    //     // a string!!!
-    //     setBlogState({
-    //       ...blogState,
-    //       imageOneURL: returnedData.url,
-    //     });
-    //   });
-    // console.log(returnURL);
+  };
+  const handleNewPhoto2 = (event) => {
+    event.preventDefault();
+    if (imageState.imageOne) {
+      let uploadImage = new FormData();
+      uploadImage.append("file", imageState.imageTwo);
+      uploadImage.append("upload_preset", cloudPreset);
+      fetch(cloudinaryURL, {
+        method: "POST",
+        body: uploadImage,
+      })
+        .then((response) => {
+          return response.text();
+        })
+        .then((data) => {
+          let returnedData = JSON.parse(data);
+          setBlogState({
+            ...blogState,
+            imageTwoURL: returnedData.url,
+          });
+        });
+    }
+  };
+  const handleNewPhoto3 = (event) => {
+    event.preventDefault();
+    if (imageState.imageThree) {
+      let uploadImage = new FormData();
+      uploadImage.append("file", imageState.imageThree);
+      uploadImage.append("upload_preset", cloudPreset);
+      fetch(cloudinaryURL, {
+        method: "POST",
+        body: uploadImage,
+      })
+        .then((response) => {
+          return response.text();
+        })
+        .then((data) => {
+          let returnedData = JSON.parse(data);
+          setBlogState({
+            ...blogState,
+            imageThreeURL: returnedData.url,
+          });
+        });
+    }
+  };
+  const handleNewPhoto4 = (event) => {
+    event.preventDefault();
+    if (imageState.imageFour) {
+      let uploadImage = new FormData();
+      uploadImage.append("file", imageState.imageFour);
+      uploadImage.append("upload_preset", cloudPreset);
+      fetch(cloudinaryURL, {
+        method: "POST",
+        body: uploadImage,
+      })
+        .then((response) => {
+          return response.text();
+        })
+        .then((data) => {
+          let returnedData = JSON.parse(data);
+          setBlogState({
+            ...blogState,
+            imageFourURL: returnedData.url,
+          });
+        });
+    }
   };
 
   const imageChange = (event) => {
@@ -391,16 +533,21 @@ export default function NewBlog() {
           <br />
         </div>
       </form>
-      <form
+      {/* <form
         className="lg:w-5/6 w-full lg:mx-auto p-2 border border-gray-300 bg-green-300"
         id="contact-form"
-        onSubmit={handleNewPhoto}
-      >
-        <div className="w-auto flex flex-row">
+        // onSubmit={handleNewPhoto}
+        onSubmit={handleNewPhotos}
+      > */}
+      {/* <div className="w-auto flex flex-row">
+          <input type="file" name="images" onChange={imageChange} multiple />
+          {previewSource && <img className="w-40" src={previewSource} />}
+        </div> */}
+      {/* <div className="w-auto flex flex-row">
           <input type="file" name="imageOne" onChange={imageChange} />
           {previewSource && <img className="w-40" src={previewSource} />}
-        </div>
-        <div className="w-auto flex flex-row">
+        </div> */}
+      {/* <div className="w-auto flex flex-row">
           <input type="file" name="imageTwo" onChange={imageChange} />
         </div>
         <div className="w-auto flex flex-row">
@@ -408,13 +555,57 @@ export default function NewBlog() {
         </div>
         <div className="w-auto flex flex-row">
           <input type="file" name="imageFour" onChange={imageChange} />
-        </div>
-        <button
+        </div> */}
+      {/* <button
           type="submit"
           className="rounded py-2 px-6 bg-dclpal1-400 hover:bg-dclpal1-200 text-xl hover:text-white"
         >
           Upload image(s)
         </button>
+      </form> */}
+      <form onSubmit={handleNewPhoto1}>
+        <input type="file" name="imageOne" onChange={imageChange} />
+        <button className="border border-black border-2" type="submit">
+          Upload photo 1
+        </button>
+        {blogState.imageOneURL ? (
+          <span>Image 1 successfully uploaded</span>
+        ) : (
+          ""
+        )}
+      </form>
+      <form onSubmit={handleNewPhoto2}>
+        <input type="file" name="imageTwo" onChange={imageChange} />
+        <button className="border border-black border-2" type="submit">
+          Upload photo 2
+        </button>
+        {blogState.imageTwoURL ? (
+          <span>Image 2 successfully uploaded</span>
+        ) : (
+          ""
+        )}
+      </form>
+      <form onSubmit={handleNewPhoto3}>
+        <input type="file" name="imageThree" onChange={imageChange} />
+        <button className="border border-black border-2" type="submit">
+          Upload photo 3
+        </button>
+        {blogState.imageThreeURL ? (
+          <span>Image 3 successfully uploaded</span>
+        ) : (
+          ""
+        )}
+      </form>
+      <form onSubmit={handleNewPhoto4}>
+        <input type="file" name="imageFour" onChange={imageChange} />
+        <button className="border border-black border-2" type="submit">
+          Upload photo 4
+        </button>
+        {blogState.imageFourURL ? (
+          <span>Image 4 successfully uploaded</span>
+        ) : (
+          ""
+        )}
       </form>
     </div>
   );

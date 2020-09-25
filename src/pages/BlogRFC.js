@@ -13,6 +13,9 @@ export default function BlogRFC(props) {
     bodyThree: "",
     bodyFour: "",
     imageOneURL: "",
+    imageTwoURL: "",
+    imageThreeURL: "",
+    imageFourURL: "",
     timestamp: "",
   });
   useEffect(() => {
@@ -25,6 +28,9 @@ export default function BlogRFC(props) {
         bodyThree: res.data.bodyThree,
         bodyFour: res.data.bodyFour,
         imageOneURL: res.data.imageOneURL,
+        imageTwoURL: res.data.imageTwoURL,
+        imageThreeURL: res.data.imageThreeURL,
+        imageFourURL: res.data.imageFourURL,
         timestamp: res.data.userCreated,
         id: res.data._id,
       });
@@ -70,12 +76,24 @@ export default function BlogRFC(props) {
           </h1>
           <div className="flex flex-row text-lg bg-red-200">
             <h1>Body 1: {blog.bodyOne}</h1>
-            <img className="" src={blog.imageOneURL} alt="blog 1" />
+            <img
+              className=""
+              src={
+                blog.imageOneURL
+                  ? blog.imageOneURL
+                  : "http://placeimg.com/240/240/any"
+              }
+              alt="blog 1"
+            />
           </div>
           <div className="flex flex-row text-lg bg-red-300">
             <img
               className=""
-              src="http://placeimg.com/240/240/any"
+              src={
+                blog.imageTwoURL
+                  ? blog.imageTwoURL
+                  : "http://placeimg.com/240/240/any"
+              }
               alt="blog 1"
             />
             <h1>Body 2: {blog.bodyTwo}</h1>
@@ -84,14 +102,22 @@ export default function BlogRFC(props) {
             <h1>Body 3: {blog.bodyThree}</h1>
             <img
               className=""
-              src="http://placeimg.com/240/240/any"
+              src={
+                blog.imageThreeURL
+                  ? blog.imageThreeURL
+                  : "http://placeimg.com/240/240/any"
+              }
               alt="blog 1"
             />
           </div>
           <div className="flex flex-row text-lg bg-red-500">
             <img
               className=""
-              src="http://placeimg.com/240/240/any"
+              src={
+                blog.imageFourURL
+                  ? blog.imageFourURL
+                  : "http://placeimg.com/240/240/any"
+              }
               alt="blog 1"
             />
             <h1>Body 4: {blog.bodyFour}</h1>
