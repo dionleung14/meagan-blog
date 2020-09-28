@@ -26,7 +26,7 @@ export default function Home(props) {
   // console.log("this is a date: 1600660776394");
   // console.log(Date(1600660776394));
   return (
-    <div className="">
+    <div className="relative">
       <Header />
       <Navbar logged={true} />
       <img
