@@ -26,11 +26,13 @@ export default function Home(props) {
   // console.log("this is a date: 1600660776394");
   // console.log(Date(1600660776394));
   return (
-    <div className="relative">
-      <Header />
-      <Navbar logged={true} />
+    <div className="">
+      <div className="relative bg-yellow-200">
+        <Header />
+        <Navbar logged={true} />
+      </div>
       <img
-        className="mx-auto my-6"
+        className="mx-auto mb-6 mt-24"
         src="http://placekitten.com/1200/300"
         alt="header"
       />

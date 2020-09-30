@@ -77,7 +77,7 @@ export default function BlogRFC(props) {
           <div className="flex flex-row text-lg bg-red-200">
             <h1>Body 1: {blog.bodyOne}</h1>
             <img
-              className=""
+              className="max-w-lg"
               src={
                 blog.imageOneURL
                   ? blog.imageOneURL
@@ -88,7 +88,7 @@ export default function BlogRFC(props) {
           </div>
           <div className="flex flex-row text-lg bg-red-300">
             <img
-              className=""
+              className="max-w-lg"
               src={
                 blog.imageTwoURL
                   ? blog.imageTwoURL
@@ -101,7 +101,7 @@ export default function BlogRFC(props) {
           <div className="flex flex-row text-lg bg-red-400">
             <h1>Body 3: {blog.bodyThree}</h1>
             <img
-              className=""
+              className="max-w-lg"
               src={
                 blog.imageThreeURL
                   ? blog.imageThreeURL
@@ -112,7 +112,7 @@ export default function BlogRFC(props) {
           </div>
           <div className="flex flex-row text-lg bg-red-500">
             <img
-              className=""
+              className="max-w-lg"
               src={
                 blog.imageFourURL
                   ? blog.imageFourURL
