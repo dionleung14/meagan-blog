@@ -25,6 +25,9 @@ export default function Navbar(props) {
           <div className="hidden"></div>
         )}
       </div>
+      <div>
+        <input type="text" placeholder="Search" />
+      </div>
     </div>
   );
 }
