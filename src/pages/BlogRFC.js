@@ -61,24 +61,21 @@ export default function BlogRFC(props) {
   return (
     <PageWrapper>
       <Header />
-      <div className="bg-gray-600 w-full px-2 py-4 flex flex-row justify-evenly">
+      <div className="bg-gray-600 w-full lg:w-2/3 lg:mx-auto px-2 py-4 flex flex-row justify-evenly">
         <div>
-          <h1 className="text-lg bg-red-100 text-left">
-            Date: {calDate.join(" ")}{" "}
-            <span className="bg-red-600 text-white px-2">
-              {/* <Link to="/"> */}
+          <h1 className="relative text-2xl bg-red-100 text-left">
+            Date: {calDate.join(" ")} time: {time}
+            <span className="absolute right-0 bg-red-600 text-white px-2">
               <button onClick={deleteMe}>Delete me</button>
-              {/* </Link> */}
             </span>
           </h1>
-          <h3>time: {time}</h3>
-          <h1 className="text-lg bg-red-700 text-center">
+          <h1 className="text-3xl italic bg-red-700 text-center">
             Title: {blog.title}
           </h1>
           <div className="flex flex-row text-lg bg-red-200">
-            <h1>Body 1: {blog.bodyOne}</h1>
+            <p>Body 1: {blog.bodyOne}</p>
             <img
-              className="max-w-lg"
+              className="w-1/6 float-right"
               src={
                 blog.imageOneURL
                   ? blog.imageOneURL
@@ -89,7 +86,7 @@ export default function BlogRFC(props) {
           </div>
           <div className="flex flex-row text-lg bg-red-300">
             <img
-              className="max-w-lg"
+              className="w-1/6"
               src={
                 blog.imageTwoURL
                   ? blog.imageTwoURL
@@ -97,12 +94,12 @@ export default function BlogRFC(props) {
               }
               alt="blog 1"
             />
-            <h1>Body 2: {blog.bodyTwo}</h1>
+            <p>Body 2: {blog.bodyTwo}</p>
           </div>
           <div className="flex flex-row text-lg bg-red-400">
-            <h1>Body 3: {blog.bodyThree}</h1>
+            <p>Body 3: {blog.bodyThree}</p>
             <img
-              className="max-w-lg"
+              className="w-1/6"
               src={
                 blog.imageThreeURL
                   ? blog.imageThreeURL
@@ -113,7 +110,7 @@ export default function BlogRFC(props) {
           </div>
           <div className="flex flex-row text-lg bg-red-500">
             <img
-              className="max-w-lg"
+              className="w-1/6"
               src={
                 blog.imageFourURL
                   ? blog.imageFourURL
@@ -121,7 +118,7 @@ export default function BlogRFC(props) {
               }
               alt="blog 1"
             />
-            <h1>Body 4: {blog.bodyFour}</h1>
+            <p>Body 4: {blog.bodyFour}</p>
           </div>
         </div>
         {/* <img className="" src="http://placeimg.com/240/240/any" alt="blog 1" /> */}
