@@ -81,7 +81,7 @@ export default function BlogRFC(props) {
                   ? blog.imageOneURL
                   : "http://placeimg.com/240/240/any"
               }
-              alt="blog 1"
+              alt="blog photo 1"
             />
           </div>
           <div className="flex flex-row text-lg bg-red-300">
@@ -92,7 +92,7 @@ export default function BlogRFC(props) {
                   ? blog.imageTwoURL
                   : "http://placeimg.com/240/240/any"
               }
-              alt="blog 1"
+              alt="blog photo 2"
             />
             <p>Body 2: {blog.bodyTwo}</p>
           </div>
@@ -105,7 +105,7 @@ export default function BlogRFC(props) {
                   ? blog.imageThreeURL
                   : "http://placeimg.com/240/240/any"
               }
-              alt="blog 1"
+              alt="blog photo 3"
             />
           </div>
           <div className="flex flex-row text-lg bg-red-500">
@@ -116,7 +116,7 @@ export default function BlogRFC(props) {
                   ? blog.imageFourURL
                   : "http://placeimg.com/240/240/any"
               }
-              alt="blog 1"
+              alt="blog photo 4"
             />
             <p>Body 4: {blog.bodyFour}</p>
           </div>
