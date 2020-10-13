@@ -1,11 +1,12 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import Header from "../components/Header";
+import PageWrapper from "../components/PageWrapper";
 
 export default function Category(props) {
   return (
-    <div>
-      <Navbar logged={true} />
+    <PageWrapper>
+      <Header />
       <h1>You are viewing all blogs in category {props.filter}</h1>
-    </div>
+    </PageWrapper>
   );
 }

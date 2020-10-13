@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import Header from "../components/Header";
+import PageWrapper from "../components/PageWrapper";
 import API from "../utils/API";
 
 export default function BlogRFC(props) {
@@ -58,9 +59,9 @@ export default function BlogRFC(props) {
   };
 
   return (
-    <div>
-      <Navbar logged={true} />
-      <div className="bg-gray-600 w-full my-4 px-2 py-4 flex flex-row justify-evenly">
+    <PageWrapper>
+      <Header />
+      <div className="bg-gray-600 w-full px-2 py-4 flex flex-row justify-evenly">
         <div>
           <h1 className="text-lg bg-red-100 text-left">
             Date: {calDate.join(" ")}{" "}
@@ -125,6 +126,6 @@ export default function BlogRFC(props) {
         </div>
         {/* <img className="" src="http://placeimg.com/240/240/any" alt="blog 1" /> */}
       </div>
-    </div>
+    </PageWrapper>
   );
 }
