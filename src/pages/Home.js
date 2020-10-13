@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
-import Navbar from "../components/Navbar";
+import PageWrapper from "../components/PageWrapper";
 import MissionStatement from "../components/MissionStatement";
 import ContentWrapper from "../components/ContentWrapper";
 import IndividBlog from "../components/IndividBlog";
@@ -26,13 +26,12 @@ export default function Home(props) {
   // console.log("this is a date: 1600660776394");
   // console.log(Date(1600660776394));
   return (
-    <div className="">
-      <div className="relative bg-yellow-200">
+    <PageWrapper>
+      <div className="bg-yellow-200">
         <Header />
-        <Navbar logged={true} />
       </div>
       <img
-        className="mx-auto mb-6 mt-24"
+        className="mx-auto mb-6"
         src="http://placekitten.com/1200/300"
         alt="header"
       />
@@ -61,6 +60,7 @@ export default function Home(props) {
           <div>Loading</div>
         )}
       </ContentWrapper>
-    </div>
+    </PageWrapper>
+    // </div>
   );
 }
