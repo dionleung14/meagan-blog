@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import SubmitBlog from "./pages/SubmitBlog";
 // import Blog from "./pages/Blog";
+import About from "./pages/About";
 import BlogRFC from "./pages/BlogRFC";
 import Category from "./pages/Category";
 import NoMatch from "./pages/NoMatch";
@@ -21,8 +22,8 @@ function App() {
         <Route exact path="/">
           <Home security={loggedIn} />
         </Route>
-        <Route exact path="/category-one">
-          <Category security={loggedIn} filter="1" />
+        <Route exact path="/about">
+          <About security={loggedIn} filter="1" />
         </Route>
         <Route exact path="/category-two">
           <Category security={loggedIn} filter="2" />
