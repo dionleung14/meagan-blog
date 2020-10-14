@@ -13,8 +13,8 @@ export default function Navbar(props) {
         </Link>
       </div>
       <div>
-        <Link className="bg-blue-400 mx-4" to="/category-two">
-          Category 2
+        <Link className="bg-blue-400 mx-4" to="/contact">
+          Contact
         </Link>
         <Link className="bg-blue-400 mx-4" to="/category-three">
           Category 3
