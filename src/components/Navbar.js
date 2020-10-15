@@ -8,13 +8,13 @@ export default function Navbar(props) {
         <Link className="bg-green-400 mx-4" to="/">
           Home page
         </Link>
-        <Link className="bg-blue-400 mx-4" to="/category-one">
-          Category 1
+        <Link className="bg-blue-400 mx-4" to="/about">
+          About
         </Link>
       </div>
       <div>
-        <Link className="bg-blue-400 mx-4" to="/category-two">
-          Category 2
+        <Link className="bg-blue-400 mx-4" to="/contact">
+          Contact
         </Link>
         <Link className="bg-blue-400 mx-4" to="/category-three">
           Category 3
