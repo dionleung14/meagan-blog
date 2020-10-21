@@ -8,7 +8,7 @@ export default class About extends Component {
     return (
       <PageWrapper>
         <Header />
-        <ContentWrapper>Helloo about page</ContentWrapper>
+        <ContentWrapper>This is the about page</ContentWrapper>
       </PageWrapper>
     );
   }
